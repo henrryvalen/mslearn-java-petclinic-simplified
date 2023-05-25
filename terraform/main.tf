@@ -74,10 +74,10 @@ resource "azurerm_service_plan" "main" {
   name                = "${var.application_name}-plan"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  kind                = "Windows"
-  reserved            = false
-  os_type             = "Windows"
-  sku_name            = "P1v2"
+  #kind                = "Windows"
+  #reserved            = false
+  os_type  = "Windows"
+  sku_name = "P1v2"
   #sku {
   #  tier = "PremiumV2"
   #  size = "P1v2"

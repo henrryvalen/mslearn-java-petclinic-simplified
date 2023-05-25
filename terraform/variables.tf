@@ -1,11 +1,11 @@
 variable "resource_group" {
   description = "The resource group"
-  default     = "resourcegroupterra005"
+  default     = "resourcegroupterra006"
 }
 
 variable "application_name" {
   description = "The Spring Boot application name"
-  default     = "webappgroupterra005"
+  default     = "webappgroupterra006"
 }
 
 variable "location" {
