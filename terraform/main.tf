@@ -70,17 +70,18 @@ resource "azurerm_mysql_firewall_rule" "main" {
 }
 
 # This creates the plan that the service use
-resource "azurerm_app_service_plan" "main" {
+resource "azurerm_service_plan" "main" {
   name                = "${var.application_name}-plan"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   kind                = "Windows"
   reserved            = false
-
-  sku {
-    tier = "PremiumV2"
-    size = "P1v2"
-  }
+  os_type             = "Windows"
+  sku_name            = "P1v2"
+  #sku {
+  #  tier = "PremiumV2"
+  #  size = "P1v2"
+  #}
 }
 
 # This creates the service definition
@@ -88,7 +89,7 @@ resource "azurerm_app_service" "main" {
   name                = var.application_name
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  app_service_plan_id = azurerm_app_service_plan.main.id
+  app_service_plan_id = azurerm_service_plan.main.id
   https_only          = true
 
   site_config {
