@@ -85,18 +85,22 @@ resource "azurerm_service_plan" "main" {
 }
 
 # This creates the service definition
-resource "azurerm_app_service" "main" {
+resource "azurerm_windows_web_app" "main" {
   name                = var.application_name
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  app_service_plan_id = azurerm_service_plan.main.id
+  service_plan_id     = azurerm_service_plan.main.id
   https_only          = true
 
   site_config {
-    always_on              = true
-    java_version           = "1.8"
-    java_container         = "TOMCAT"
-    java_container_version = "8.5"
+    always_on = true
+    application_stack {
+      java_version           = "1.8"
+      java_container         = "TOMCAT"
+      java_container_version = "8.5"
+    }
+
+
   }
 
   app_settings = {
