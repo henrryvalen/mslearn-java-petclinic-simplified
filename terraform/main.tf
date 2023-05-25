@@ -92,8 +92,10 @@ resource "azurerm_app_service" "main" {
   https_only          = true
 
   site_config {
-    always_on        = true
-    linux_fx_version = "JAVA|8-jre8"
+    always_on              = true
+    java_version           = "1.8"
+    java_container         = "TOMCAT"
+    java_container_version = "8.5"
   }
 
   app_settings = {
